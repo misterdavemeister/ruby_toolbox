@@ -1,11 +1,18 @@
-def subsets(arr)
-  get_subs, subs, len = [], [], arr.length
+def subsets(arr, sub_length = nil)
+  if sub_length.nil?
+    subs, get_subs, len = [], [], arr.length
 
-  len.times do |n|
-    get_subs = get_subset(arr, n + 1);
-    get_subs.each { |a| subs << a }
+    len.times do |n|
+      get_subs = get_subset(arr, n + 1)
+      get_subs.each { |s| subs << s }
+    end
+
+  else
+    sub_length = sub_length.to_i
+    subs, get_subs = [], []
+    get_subs = get_subset(arr, sub_length)
+    get_subs.each { |s| subs << s }
   end
-
   return subs
 end
 
@@ -55,3 +62,40 @@ test.length.times { |n| p test.combination(n + 1).to_a }
 #[[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5]]
 #[[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
 #[[1, 2, 3, 4, 5]]
+
+print "       test: "
+p subsets(test)
+print "       test: "
+p subsets(test, 1)
+print "combination: "
+p test.combination(1).to_a
+print "       test: "
+p subsets(test, 2)
+print "combination: "
+p test.combination(2).to_a
+print "       test: "
+p subsets(test, 3)
+print "combination: "
+p test.combination(3).to_a
+print "       test: "
+p subsets(test, 4)
+print "combination: "
+p test.combination(4).to_a
+print "       test: "
+p subsets(test, 5)
+print "combination: "
+p test.combination(5).to_a
+#=>
+=begin
+test: [[1], [2], [3], [4], [5], [1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5], [1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5], [1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5], [1, 2, 3, 4, 5]]
+       test: [[1], [2], [3], [4], [5]]
+combination: [[1], [2], [3], [4], [5]]
+       test: [[1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5]]
+combination: [[1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5], [4, 5]]
+       test: [[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5]]
+combination: [[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5]]
+       test: [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
+combination: [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
+       test: [[1, 2, 3, 4, 5]]
+combination: [[1, 2, 3, 4, 5]]
+=end
