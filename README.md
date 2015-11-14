@@ -1,6 +1,6 @@
 # Ruby Toolbox
 
-***subset.rb / subsets.rb***:
+***subsets.rb / subsets_arr.rb***:
 A custom method similar to the built in Combination method, which returns all subsets of an array if used like so:
 **p test_array.subsets** or **p subsets(test_array)** (depending on which file is used)
 
