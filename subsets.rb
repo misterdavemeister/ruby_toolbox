@@ -30,7 +30,7 @@ def get_subset(arr, i)
 
   ((len - i) + 1).times do |n|
     head = arr.slice(n, 1)
-    rest = arr.slice(n + head.length, len - head.length)
+    rest = arr.slice(n + 1, len - 1)
     tail = get_subset(rest, i - 1)
 
     tail.each do |t|
