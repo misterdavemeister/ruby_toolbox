@@ -1,15 +1,17 @@
 def subsets(arr)
   get_subs, subs, len = [], [], arr.length
+
   len.times do |n|
     get_subs = get_subset(arr, n + 1);
     get_subs.each { |a| subs << a }
   end
-  subs
+
+  return subs
 end
 
+
 def get_subset(arr, i)
-  subs, head, tail = [], [], []
-  len = arr.length
+  subs, head, tail, len = [], [], [], arr.length
 
   if i == len
     return [arr]
@@ -22,13 +24,16 @@ def get_subset(arr, i)
 
   ((len - i) + 1).times do |n|
     head = arr.slice(n, 1)
-    tail = get_subset(arr.slice(n + head.length, arr.length - head.length), i - 1)
+    rest = arr.slice(n + head.length, len - head.length)
+    tail = get_subset(rest, i - 1)
+
     tail.each do |t|
       merged = head.clone
       merged = merged.concat(t)
       subs << merged
     end
   end
+
   return subs
 end
 
