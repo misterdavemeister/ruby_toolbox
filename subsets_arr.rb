@@ -31,7 +31,7 @@ class Array
 
     ((length - len) + 1).times do |n|
       head = arr.slice(n, 1)
-      rest = arr.slice(n + 1, length - head.length)
+      rest = arr.slice(n + 1, length - 1)
       tail = get_subs(rest, len - 1)
 
       tail.each do |t|
