@@ -2,10 +2,12 @@ class Array
   def subsets(sub_length = nil)
     if sub_length.nil?
       subs, len_subs, len = [], [], self.length
+
       len.times do |n|
         len_subs = get_subs(self, n + 1)
         len_subs.each { |s| subs << s }
       end
+
     else
       sub_length = sub_length.to_i
       subs, len_subs = [], []
@@ -15,8 +17,10 @@ class Array
     return subs
   end
 
+  
   def get_subs(arr, len)
     subs, head, tail, length = [], [], [], arr.length
+
     if len == length
       return [arr]
     elsif len <= 0 || len > length
@@ -67,8 +71,6 @@ p test.combination(5).to_a
 #=>
 =begin
        test: [[1], [2], [3], [4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4], [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
-       test: [[]]
-combination: [[]]
        test: [[1], [2], [3], [4]]
 combination: [[1], [2], [3], [4]]
        test: [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
