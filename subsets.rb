@@ -1,7 +1,7 @@
 class Array
   def subsets(sub_length = nil)
     if sub_length.nil?
-      subs, len_subs, len = [], [], self.length
+      subs, len = [], self.length
 
       len.times do |n|
         len_subs = get_subs(self, n + 1)
@@ -9,17 +9,16 @@ class Array
       end
 
     else
-      sub_length = sub_length.to_i
-      subs, len_subs = [], []
+      subs, sub_length = [], sub_length.to_i
       len_subs = get_subs(self, sub_length)
       len_subs.each { |s| subs << s }
     end
     return subs
   end
 
-  
+
   def get_subs(arr, len)
-    subs, head, tail, length = [], [], [], arr.length
+    subs, length = [], arr.length
 
     if len == length
       return [arr]
