@@ -3,8 +3,8 @@ class Array
     if sub_length.nil?
       subs, len = [], self.length
 
-      len.times do |n|
-        len_subs = get_subs(self, n + 1)
+      (len + 1).times do |n|
+        len_subs = get_subs(self, n)
         len_subs.each { |s| subs << s }
       end
 
@@ -22,7 +22,9 @@ class Array
 
     if len == length
       return [arr]
-    elsif len <= 0 || len > length
+    elsif len <= 0
+      return [subs]
+    elsif len > length
       return []
     elsif len == 1
       arr.each { |s| subs << [s] }
@@ -48,6 +50,10 @@ test = [1, 2, 3, 4]
 print "       test: "
 p test.subsets
 print "       test: "
+p test.subsets(0)
+print "combination: "
+p test.combination(0).to_a
+print "       test: "
 p test.subsets(1)
 print "combination: "
 p test.combination(1).to_a
@@ -69,7 +75,9 @@ print "combination: "
 p test.combination(5).to_a
 #=>
 =begin
-       test: [[1], [2], [3], [4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4], [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
+       test: [[], [1], [2], [3], [4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4], [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
+       test: [[]]
+combination: [[]]
        test: [[1], [2], [3], [4]]
 combination: [[1], [2], [3], [4]]
        test: [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
@@ -78,4 +86,6 @@ combination: [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
 combination: [[1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]]
        test: [[1, 2, 3, 4]]
 combination: [[1, 2, 3, 4]]
+       test: []
+combination: []
 =end
